@@ -1,37 +1,37 @@
 <!--This patch file was created by Robert Senktas @RobsonAutomator -->
 <!--Purpose of this file is enable a DEBUG logging for EXM module -->
-<configuration xmlns:patch="http://www.sitecore.net/xmlconfig/" xmlns:set="http://www.sitecore.net/xmlconfig/set/">
-  <sitecore>
-    <settings>
-		<!-- patch for Sitecore.ExM.Framework.config -->
-		<setting name="EXM.Debug">
-			<patch:attribute name="value">true</patch:attribute>
-		</setting>
-    </settings>
-	
-	<log4net>
+<configuration xmlns:patch="http://www.sitecore.net/xmlconfig/" 
+	xmlns:set="http://www.sitecore.net/xmlconfig/set/">
+	<sitecore>
+		<settings>
+			<!-- patch for Sitecore.ExM.Framework.config -->
+			<setting name="EXM.Debug">
+				<patch:attribute name="value">true</patch:attribute>
+			</setting>
+		</settings>
+		<log4net>
+			<!-- patch for Sitecore.EDS.Core.config -->
+			<logger name="Sitecore.EDS" additivity="false">
+				<level value="INFO">
+					<patch:attribute name="value">DEBUG</patch:attribute>
+				</level>
+			</logger>
+			<!-- patch for Sitecore.EmailExperience.Core.config -->
+			<logger name="Sitecore.EXM" additivity="false">
+				<level value="INFO">
+					<patch:attribute name="value">DEBUG</patch:attribute>
+				</level>
+			</logger>
+		</log4net>
 		<!-- patch for Sitecore.EDS.Core.config -->
-		<logger name="Sitecore.EDS" additivity="false">
-			<level value="INFO">
-				<patch:attribute name="value">DEBUG</patch:attribute>
-			</level>
-		</logger>
-		<!-- patch for Sitecore.EmailExperience.Core.config -->
-		<logger name="Sitecore.EXM" additivity="false">
-		<level value="INFO">
-				<patch:attribute name="value">DEBUG</patch:attribute>
-		</level>
-		</logger>
-	</log4net>
-	<!-- patch for Sitecore.EDS.Core.config -->
-	<exm>
-        <eds>
-			<edsLogger type="Sitecore.ExM.Framework.Diagnostics.Logger, Sitecore.ExM.Framework" singleInstance="true">
-                    <param desc="debugEnabled" patch:instead="*[@desc=debugEnabled]">
+		<exm>
+			<eds>
+				<edsLogger type="Sitecore.ExM.Framework.Diagnostics.Logger, Sitecore.ExM.Framework" singleInstance="true">
+					<param desc="debugEnabled" patch:instead="*[@desc=debugEnabled]">
 					true
 					</param>
-            </edsLogger>
-		</eds>
-	</exm>
-  </sitecore>
+				</edsLogger>
+			</eds>
+		</exm>
+	</sitecore>
 </configuration>
