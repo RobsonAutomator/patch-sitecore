@@ -4,11 +4,10 @@
     <log4net>
       <!-- patch for save Unicorn logs to separated file -->
       <appender name="UnicornFileAppender" type="log4net.Appender.RollingFileAppender, Sitecore.Logging">
-        <file value="$(dataFolder)/logs/unicorn.{date}.{time}.txt" />
+        <file value="$(dataFolder)/logs/unicorn.log.{date}.{time}.txt" />
         <appendToFile value="true" />
         <rollingStyle value="Size" />
         <maxSizeRollBackups value="-1" />
-        <maximumFileSize value="10MB" />
         <filter type="log4net.Filter.StringMatchFilter">
           <stringToMatch value="[Unicorn]" />
         </filter>

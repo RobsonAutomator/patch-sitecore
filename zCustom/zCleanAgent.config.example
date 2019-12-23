@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+
+Purpose: This is an example how to modify CleanupAgent base on environment rule.
+		 
+-->
+<configuration xmlns:patch="http://www.sitecore.net/xmlconfig/" xmlns:role="http://www.sitecore.net/xmlconfig/role/"
+               xmlns:env="http://www.sitecore.net/xmlconfig/env/" xmlns:set="http://www.sitecore.net/xmlconfig/set/" >
+  <sitecore>
+    <scheduling>
+      <agent type="Sitecore.Tasks.CleanupAgent" method="Run" interval="06:00:00" patch:instead="*[@type='Sitecore.Tasks.CleanupAgent']" env:require="!PROD">
+      <!-- Specifies files to be cleaned up.
+              If rolling="true", [minCount] and [maxCount] will be ignored.
+              [minAge] and [maxAge] must be specified as [days.]hh:mm:ss. The default value
+              of [minAge] is 30 minutes.
+              [strategy]: number of files within hour, day, week, month, year
+              [recursive=true|false]: descend folders?
+          -->
+      <files hint="raw:AddCommand">
+        <remove folder="$(dataFolder)/logs" pattern="*log.*.txt*" maxAge="10.00:00:00" recursive="true" />
+        <remove folder="$(dataFolder)/diagnostics" pattern="*.*" maxAge="10.00:00:00" recursive="true" />
+        <remove folder="$(dataFolder)/viewstate" pattern="*.txt" maxAge="2.00:00:00" recursive="true" />
+        <remove folder="$(tempFolder)/diagnostics" pattern="*.*" maxAge="00:10:00" recursive="true" />
+        <remove folder="/App_Data/MediaCache" pattern="*.*" maxAge="90.00:00:00" recursive="true" />
+      </files>
+    </agent>
+	</scheduling>
+  </sitecore>
+</configuration>

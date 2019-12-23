@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+
+Purpose: This is a template to start your own Sitecore patch configuration.
+		 This file containts support for a rule-based configuration:
+		 https://doc.sitecore.com/developers/91/platform-administration-and-architecture/en/use-a-rule-based-configuration.html
+
+# How to use rule based configuration
+Syntax:  [rulename]:require=[testvalue]
+
+Examples: role:require="ContentManagement or ContentDelivery"
+		  
+		  env:require="PROD"
+	
+# How to patch Sitecore setting:
+		  
+	You can use "patch:attribute" for clarity:
+    <setting name="RequireLockBeforeEditing">
+      <patch:attribute name="value">false</patch:attribute>
+    </setting>		  
+		  
+-->
+<configuration xmlns:patch="http://www.sitecore.net/xmlconfig/" xmlns:role="http://www.sitecore.net/xmlconfig/role/"
+               xmlns:env="http://www.sitecore.net/xmlconfig/env/" xmlns:set="http://www.sitecore.net/xmlconfig/set/" >
+  <sitecore>
+    <settings>
+	</settings>
+  </sitecore>
+</configuration>
