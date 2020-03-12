@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration xmlns:patch="http://www.sitecore.net/xmlconfig/">
+  <sitecore>
+    <settings>
+      <!--  ENABLE FULL LEVEL DEBUG OF CONTENT SEARCHES
+            When enabled this will output full verbose search logging. Usage is for developers and also very useful for support.
+            You will need to make sure that Log4Net is also set the DEBUG level for its verbosity.
+      -->
+      <setting name="ContentSearch.EnableSearchDebug" value="true" />
+    </settings>
+	
+	<log4net>
+	 <logger name="Sitecore.Diagnostics.Search" additivity="false">
+		<level value="INFO">
+			<patch:attribute name="value">DEBUG</patch:attribute>
+		</level>
+      </logger>
+	</log4net>  
+  </sitecore>
+</configuration>
