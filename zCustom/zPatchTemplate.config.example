@@ -24,6 +24,6 @@ Examples: role:require="ContentManagement or ContentDelivery"
                xmlns:env="http://www.sitecore.net/xmlconfig/env/" xmlns:set="http://www.sitecore.net/xmlconfig/set/" >
   <sitecore>
     <settings>
-	</settings>
+    </settings>
   </sitecore>
 </configuration>
