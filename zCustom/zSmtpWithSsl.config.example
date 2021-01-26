@@ -1,0 +1,40 @@
+<!--This patch is to use SMTP server with SSL -->
+<!-- 
+   If SMTP server can send emails only from specific domain you should change this setting:
+	/sitecore/system/Settings/Security/Password recovery/Password Recovery Email 
+-->
+
+
+<!-- Add this if missing to web.config 
+
+  <system.net>  
+    <mailSettings>  
+      <smtp deliveryMethod="Network">  
+        <network enableSsl = "true" />  
+      </smtp>  
+    </mailSettings>  
+  </system.net>  
+  
+-->
+
+<configuration xmlns:patch="http://www.sitecore.net/xmlconfig/" xmlns:set="http://www.sitecore.net/xmlconfig/set/">
+  <sitecore>
+    <settings>	  
+      <setting name="MailServer">
+        <patch:attribute name="value">email-smtp.us-east-2.amazonaws.com</patch:attribute>
+      </setting>
+      <setting name="MailServerUserName">
+        <patch:attribute name="value">$(env:SMTP_USER)</patch:attribute>
+      </setting>
+      <setting name="MailServerPassword">
+        <patch:attribute name="value">$(env:SMTP_PWD)</patch:attribute>
+      </setting>
+      <setting name="MailServerPort">
+        <patch:attribute name="value">587</patch:attribute>
+      </setting>
+	  <setting name="MailServerUseSsl">
+        <patch:attribute name="value">true</patch:attribute>
+      </setting>
+    </settings>
+  </sitecore>
+</configuration>
